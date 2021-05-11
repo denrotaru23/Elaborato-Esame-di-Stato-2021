@@ -1,0 +1,56 @@
+create Table Utenti(
+id_utente int not null,
+cognome varchar(30),
+nome varchar(30),
+sesso varchar(45),
+data_nascita date,
+primary key(id_persona))
+engine=InnoDB;
+
+
+create Table Commercianti(
+id_commerciante int not null,
+nome varchar(30),
+tipo varchar(20),
+primary key(id_commerciante))
+engine=InnoDB;
+
+Create Table Evento(
+id_evento int not null,
+id_utente int not null,
+id_commerciante int not null,
+data date,
+n_persone int not null,
+importo int not null,
+accetazione ?
+primary key(id_evento),
+foreign key(id_utente) references Utenti(id_utente)on delete cascade,
+foreign key(id_commerciante) refrences Commercianti(id_commerciante)on delete cascade)
+engine=InnoDB;
+
+
+Create Table Prodotti(
+id_prodotto int not null,
+descrizione varchar(50),
+casa_produttrice varchar(45),
+prezzo float(5,2),
+primary key(id_prodotto) 
+engine=InnoDB;
+
+create table Sala(
+nome int not null,
+capienza int not null,
+caratteristiche varchar(50),
+mq int not null,
+indirizzo varchar(45),
+città varchar(45),
+primary key(nome))
+engine=InnoDB;
+
+create table Servizi(
+id_servizio int not null,
+tipo varchar(20),
+costo_aggiuntivo float(5,2),
+primary key(id_servizio))
+engine=InnoDB;
+engine=InnoDB;
