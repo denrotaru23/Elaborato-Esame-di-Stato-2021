@@ -28,15 +28,6 @@ foreign key(id_utente) references Utenti(id_utente)on delete cascade,
 foreign key(id_commerciante) refrences Commercianti(id_commerciante)on delete cascade)
 engine=InnoDB;
 
-
-Create Table Prodotti(
-id_prodotto int not null,
-descrizione varchar(50),
-casa_produttrice varchar(45),
-prezzo float(5,2),
-primary key(id_prodotto) 
-engine=InnoDB;
-
 create table Sala(
 nome int not null,
 capienza int not null,
@@ -53,4 +44,31 @@ tipo varchar(20),
 costo_aggiuntivo float(5,2),
 primary key(id_servizio))
 engine=InnoDB;
+
+Create Table Prodotti(
+id_prodotto int not null,
+id_commerciante int not null,
+id_servizio int not null,
+descrizione varchar(50),
+casa_produttrice varchar(45),
+prezzo float(5,2),
+primary key(id_prodotto),
+foreign key(id_commerciante) references Commercianti(id_commerciante)on delete cascade,
+foreign key(id_servizio) references Servizi(id_servizio)on delete cascade)
+engine=InnoDB;
+
+Create Table Servizi_Offerti(
+id_commerciante int not null,
+id_servizio int not null,
+costo_aggiuntivo float(5,2),
+foreign key(id_commerciante) references Commercianti(id_commerciante)on delete cascade,
+foreign key(id_servizio) references Servizi(id_servizio)on delete cascade)
+engine=InnoDB;
+
+Create Table ServizioEventi(
+id_evento int not null,
+id_servizio int not null,
+servizio_scelto varchar(50),
+foreign key(id_evento) references Evento(id_evento)on delete cascade,
+foreign key(id_servizio) references Servizi(id_servizio)on delete cascade)
 engine=InnoDB;
